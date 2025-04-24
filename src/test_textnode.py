@@ -10,18 +10,18 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(node, node2)
 
     def test2(self):
-        node = TextNode("Not the same", TextType.NORMAL, "www.iamatest.com")
-        node2 = TextNode("Notte ze thame", TextType.NORMAL, "www.iamatest.com")
+        node = TextNode("Not the same", TextType.TEXT, "www.iamatest.com")
+        node2 = TextNode("Notte ze thame", TextType.TEXT, "www.iamatest.com")
         self.assertNotEqual(node, node2)
 
     def test3(self):
-        node = TextNode("Not the same", TextType.NORMAL)
-        node2 = TextNode("Not the same", TextType.NORMAL, "www.iamatest.com")
+        node = TextNode("Not the same", TextType.TEXT)
+        node2 = TextNode("Not the same", TextType.TEXT, "www.iamatest.com")
         self.assertNotEqual(node, node2)
 
     def test4(self):
         node = TextNode("Not the same", TextType.LINK, "www.iamatest.com")
-        node2 = TextNode("Not the same", TextType.NORMAL, "www.iamatest.com")
+        node2 = TextNode("Not the same", TextType.TEXT, "www.iamatest.com")
         self.assertNotEqual(node, node2)
 
     def test5(self):
