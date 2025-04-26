@@ -43,7 +43,7 @@ def generate_page(from_path, template_path, dest_path):
     with open(dest_path, 'w', encoding="utf-8") as f:
         f.write(updated_template)
 
-def generate_page_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_page_recursive(dir_path_content, template_path, dest_dir_path, basepath="/"):
     print(f"Generating page from {dir_path_content} to {dest_dir_path} using {template_path}")
 
     for item in os.listdir(dir_path_content):
@@ -58,6 +58,8 @@ def generate_page_recursive(dir_path_content, template_path, dest_dir_path):
             html_content = markdown_to_html_node(markdown_content).to_html()
             title = extract_title(markdown_content)
             updated_template = template_content.replace("{{ Title }}", title).replace("{{ Content }}", html_content)
+            updated_template = updated_template.replace('href="/', f'href="{basepath}')
+            updated_template = updated_template.replace('src="/', f'src="{basepath}')
             
             if dest_dir_path and not os.path.exists(dest_dir_path):
                 os.makedirs(dest_dir_path)
@@ -66,4 +68,4 @@ def generate_page_recursive(dir_path_content, template_path, dest_dir_path):
                 f.write(updated_template)
         else:
             os.mkdir(item_path_to)
-            generate_page_recursive(item_path_from, template_path, item_path_to)
+            generate_page_recursive(item_path_from, template_path, item_path_to, basepath)
