@@ -66,11 +66,6 @@ class TestTextToTextNodes(unittest.TestCase):
         text = "**Bold** and **more bold**"
         nodes = text_to_textnodes(text)
 
-        print("\nTest 4 output:")
-        print(f"Number of nodes: {len(nodes)}")
-        for i, node in enumerate(nodes):
-            print(f"Node {i}: {node.text} - {node.text_type} - {getattr(node, 'url', 'No URL')}")
-        
         assert len(nodes) == 3
         assert nodes[0].text == "Bold"
         assert nodes[0].text_type == TextType.BOLD
