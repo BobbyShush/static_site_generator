@@ -18,6 +18,12 @@ def markdown_to_blocks(markdown):
     blocks = markdown.split("\n\n")
     return list(filter(lambda x: x != "",map(lambda x: x.strip(), blocks)))
 
+def extract_title(markdown):
+    for line in markdown.split('\n'):
+        if line.startswith('# '):
+            return line[2:].strip()  # Remove '# ' and trim
+    # If no h1 header is found, raise an exception
+    raise Exception("No h1 header found in markdown")
 
 def block_to_block_type(block):
     if HEADING_PATTERN.match(block):
